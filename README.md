@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Let Code
 
-## Getting Started
+A professional, modern web application built with Next.js, TypeScript, and PostgreSQL. This project features a robust authentication system, an interactive dashboard, and a comprehensive UI component library.
 
-First, run the development server:
+## 🚀 Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+**Core Framework & Language**
+
+- **Framework:** [Next.js 16](https://nextjs.org/) (App Router)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Runtime:** [Bun](https://bun.sh/)
+
+**Backend & Database**
+
+- **Database:** [PostgreSQL](https://www.postgresql.org/)
+- **ORM:** [Prisma](https://www.prisma.io/)
+- **Authentication:** [Better Auth](https://better-auth.com/) (integrated with Google OAuth and Polar)
+
+**Frontend & Styling**
+
+- **Styling:** [Tailwind CSS 4](https://tailwindcss.com/)
+- **UI Components:** [shadcn/ui](https://ui.shadcn.com/) & [Radix UI](https://www.radix-ui.com/)
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **Data Visualization:** [Recharts](https://recharts.org/) & [TanStack Table](https://tanstack.com/table/latest)
+- **State Management & Validation:** [Zod](https://zod.dev/)
+
+## ✨ Key Features
+
+- **Advanced Authentication**: Secure user onboarding and session management using Better Auth.
+- **Interactive Dashboard**: A comprehensive admin and user dashboard featuring:
+  - Data-rich tables for resource management.
+  - Interactive analytics area charts.
+  - Responsive sidebar navigation.
+- **Role-Based Access Control (RBAC)**: Built-in support for `ADMIN` and `USER` roles.
+- **Modern UI/UX**: Fully responsive design with dark mode support, powered by Tailwind CSS 4 and a wide array of accessible components.
+- **Type-Safe Database**: End-to-end type safety from the database schema to the frontend using Prisma.
+
+## 📂 Project Structure
+
+```text
+├── app/                    # Next.js App Router
+│   ├── api/                # Backend API endpoints (Auth, etc.)
+│   ├── dashboard/          # Dashboard routes (Admin & User views)
+│   └── layout.tsx          # Root layout and global providers
+├── components/             # React Components
+│   ├── ui/                 # Base shadcn/ui components
+│   ├── providers/          # Context providers (Theme, Auth, etc.)
+│   └── [feature].tsx       # Feature-specific components (Sidebar, Charts)
+├── hooks/                  # Custom React hooks (e.g., use-mobile.ts)
+├── lib/                    # Core logic and utilities
+│   ├── action/             # Server actions for data mutations
+│   ├── auth/               # Better Auth configuration and client
+│   ├── db/                 # Database query helpers
+│   ├── prisma/             # Prisma client singleton
+│   └── services/           # Business logic layer
+├── prisma/                 # Database schema and migrations
+│   └── schema.prisma       # Database model definitions
+├── public/                 # Static assets
+└── tsconfig.json           # TypeScript configuration
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerequisites
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- [Bun](https://bun.sh/) installed on your machine.
+- A PostgreSQL database instance.
 
-## Learn More
+### Installation
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the repository:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   git clone https://github.com/Muhammad-Salman-khan/let-code.git
+   cd letcode-ref
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Install dependencies:**
 
-## Deploy on Vercel
+   ```bash
+   bun install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Environment Setup:**
+   Create a `.env` file in the root directory and add your database and auth credentials:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```env
+   DATABASE_URL="postgresql://user:password@localhost:5432/letcode-ref"
+   BETTER_AUTH_SECRET="your-secret-here"
+   # Add other required environment variables for OAuth/Polar
+   ```
+
+4. **Database Migration:**
+
+   ```bash
+   bunx prisma generate
+   bunx prisma migrate dev
+   ```
+
+5. **Run the development server:**
+   ```bash
+   bun dev
+   ```
+
+## 📜 Available Scripts
+
+- `bun dev`: Starts the Next.js development server.
+- `bun build`: Generates Prisma client and builds the Next.js application for production.
+- `bun start`: Starts the production server.
+- `bun lint`: Runs ESLint to check for code quality issues.
+
+---
+
+Developed with ❤️ using Next.js and Bun.
