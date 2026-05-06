@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:tanstack.com)"
+      "mcp__plugin_desktop-commander_desktop-commander__list_directory",
+      "Bash(bun dev *)"
     ]
   }
 }
