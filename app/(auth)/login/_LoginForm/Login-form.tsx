@@ -3,17 +3,8 @@ import { useForm } from "@tanstack/react-form";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { loginSchema } from "@/lib/Validator/Form-validators";
-import { LoginWithEmail } from "@/action/auth";
+import { LoginWithEmail } from "@/modules/auth/action";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { authClient, signIn, useSession } from "@/lib/auth/auth-client";
@@ -22,6 +13,7 @@ import Image from "next/image";
 export default function LoginForm() {
   const router = useRouter();
   const { data } = useSession();
+
   const form = useForm({
     defaultValues: {
       email: "",
@@ -42,64 +34,102 @@ export default function LoginForm() {
       setTimeout(() => router.push(`/dashboard/${data?.user?.name}`), 2000);
     },
   });
+
   const LoginWithGoogle = () => {
     signIn.social({
       provider: "google",
       callbackURL: `/dashboard/${data?.user?.name}`,
     });
   };
+
+  const LoginWithGitHub = () => {
+    signIn.social({
+      provider: "github",
+      callbackURL: `/dashboard/${data?.user?.name}`,
+    });
+  };
+
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        form.handleSubmit();
-      }}
-      className="w-full"
-    >
-      <Card className="w-full max-w-md mx-auto animate-fade-in-up delay-1">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">
-            Login account
-          </CardTitle>
-          <CardDescription className="text-center">
-            Enter your details below to create your account
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="grid gap-4">
-          <form.Field
-            name="email"
-            children={(field) => (
-              <div className="grid gap-2 animate-fade-in-up delay-2">
-                <Label htmlFor={field.name}>Email</Label>
+    <div className="w-full max-w-md">
+      {/* Mobile Branding */}
+      <div className="md:hidden mb-12 flex items-center gap-4">
+        <div className="w-12 h-12 bg-[#0040e0] border-2 border-[#1c1b1b] flex items-center justify-center">
+          <span className="material-symbols-outlined text-white">terminal</span>
+        </div>
+        <span className="text-[32px] font-bold text-[#0040e0] tracking-tighter">
+          DevCode
+        </span>
+      </div>
+
+      <div className="mb-10">
+        <h2 className="text-[32px] font-bold text-[#1c1b1b] mb-2 uppercase tracking-tight">
+          System Authentication
+        </h2>
+        <p className="text-[16px] text-[#434656]">
+          Enter your credentials to access the DevCode terminal.
+        </p>
+      </div>
+
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          form.handleSubmit();
+        }}
+        className="space-y-6"
+      >
+        {/* Email */}
+        <form.Field
+          name="email"
+          children={(field) => (
+            <div className="space-y-2">
+              <label className="block text-[14px] font-bold text-[#1c1b1b] uppercase tracking-wider">
+                Username or Email
+              </label>
+              <div className="relative">
                 <Input
                   id={field.name}
-                  placeholder="m@example.com"
-                  type="email"
+                  type="text"
                   value={field.state.value}
                   onBlur={field.handleBlur}
                   onChange={(e) => field.handleChange(e.target.value)}
                   aria-invalid={field.state.meta.errors.length > 0}
                   aria-describedby={`${field.name}-error`}
-                  className="transition-all duration-200 focus-visible:ring-2 focus-visible:ring-primary/30"
+                  placeholder="dev_engineer_01"
+                  className="w-full bg-white border-2 border-[#1c1b1b] px-4 py-3 focus:ring-0 focus:border-[#0040e0] focus:shadow-[4px_4px_0px_0px_#0040e0] outline-none transition-all text-[#1c1b1b]"
                 />
-                {field.state.meta.errors.length > 0 && (
-                  <p
-                    id={`${field.name}-error`}
-                    className="text-sm text-destructive animate-fade-in"
-                  >
-                    {field.state.meta.errors[0]?.message}
-                  </p>
-                )}
+                <span className="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-[#c4c5d9]">
+                  person
+                </span>
               </div>
-            )}
-          />
-
-          <form.Field
-            name="password"
-            children={(field) => (
-              <div className="grid gap-2 animate-fade-in-up delay-3">
-                <Label htmlFor={field.name}>Password</Label>
+              {field.state.meta.errors.length > 0 && (
+                <p
+                  id={`${field.name}-error`}
+                  className="text-sm text-[#ae0008] font-bold"
+                >
+                  {field.state.meta.errors[0]?.message}
+                </p>
+              )}
+            </div>
+          )}
+        />
+        {/* Password */}
+        <form.Field
+          name="password"
+          children={(field) => (
+            <div className="space-y-2">
+              <div className="flex justify-between items-center mb-2">
+                <label className="text-[14px] font-bold text-[#1c1b1b] uppercase tracking-wider">
+                  Password
+                </label>
+                <a
+                  className="text-[12px] font-bold text-[#0040e0] hover:underline uppercase tracking-wider"
+                  href="#"
+                >
+                  Forgot Password?
+                </a>
+              </div>
+              <div className="relative">
                 <Input
                   id={field.name}
                   type="password"
@@ -108,76 +138,70 @@ export default function LoginForm() {
                   onChange={(e) => field.handleChange(e.target.value)}
                   aria-invalid={field.state.meta.errors.length > 0}
                   aria-describedby={`${field.name}-error`}
-                  className="transition-all duration-200 focus-visible:ring-2 focus-visible:ring-primary/30"
+                  placeholder="••••••••"
+                  className="w-full bg-white border-2 border-[#1c1b1b] px-4 py-3 focus:ring-0 focus:border-[#0040e0] focus:shadow-[4px_4px_0px_0px_#0040e0] outline-none transition-all text-[#1c1b1b]"
                 />
-                {field.state.meta.errors.length > 0 && (
-                  <p
-                    id={`${field.name}-error`}
-                    className="text-sm text-destructive animate-fade-in"
-                  >
-                    {field.state.meta.errors[0]?.message}
-                  </p>
-                )}
+                <span className="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-[#c4c5d9]">
+                  lock
+                </span>
               </div>
-            )}
-          />
-        </CardContent>
-        <CardFooter className="flex flex-col gap-4">
-          <form.Subscribe
-            selector={(state) => [state.canSubmit, state.isSubmitting]}
-            children={([canSubmit, isSubmitting]) => (
-              <div className="w-full animate-fade-in-up delay-4">
-                <Button
-                  type="submit"
-                  className="w-full transition-all duration-200 active:scale-[0.98]"
-                  disabled={!canSubmit}
+              {field.state.meta.errors.length > 0 && (
+                <p
+                  id={`${field.name}-error`}
+                  className="text-sm text-[#ae0008] font-bold"
                 >
-                  {isSubmitting ? "loggedIn..." : "Login"}
-                </Button>
-              </div>
-            )}
-          />
+                  {field.state.meta.errors[0]?.message}
+                </p>
+              )}
+            </div>
+          )}
+        />
+        <Button
+          type="submit"
+          className="w-full py-4 bg-[#0040e0] text-white font-black text-lg tracking-widest border-2 border-[#1c1b1b] shadow-[4px_4px_0px_0px_#1c1b1b] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <span>LOGIN</span>
+        </Button>
+        {/* Divider */}
+        <div className="relative py-4">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t-2 border-[#c4c5d9]"></div>
+          </div>
+          <div className="relative flex justify-center text-[14px] font-bold uppercase bg-[#fcf9f8] px-4">
+            <span className="text-[#434656]">External Auth Protocols</span>
+          </div>
+        </div>
+        {/* Social Login Buttons */}
+        <div className="grid  gap-4">
           <Button
             type="button"
             onClick={LoginWithGoogle}
-            aria-orientation="vertical"
-            className="
-    animate-fade-in-up delay-5
-    relative w-full h-11 flex items-center justify-center gap-3
-    bg-white dark:bg-zinc-900
-    border border-zinc-200 dark:border-zinc-800
-    hover:bg-zinc-50 dark:hover:bg-zinc-800/80
-    hover:border-zinc-300 dark:hover:border-zinc-700
-    hover:shadow-md hover:-translate-y-0.5
-    active:scale-[0.98] active:translate-y-0
-    text-zinc-800 dark:text-zinc-100
-    text-sm font-medium tracking-wide
-    rounded-md
-    transition-all duration-200 ease-out
-    disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100
-    shadow-sm
-  "
+            className="flex items-center justify-center gap-3 bg-white border-2 border-[#1c1b1b] py-3 shadow-[4px_4px_0px_0px_#1c1b1b] hover:bg-[#f0edec] transition-colors active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
           >
             <Image
-              src="/google.svg"
-              width={18}
-              height={18}
-              alt=""
-              aria-hidden="true"
+              src="google.svg"
+              width={20}
+              height={20}
+              alt="google button"
             />
-            <span>Continue with Google</span>
+            <span className="text-[14px] text-black font-bold uppercase">
+              Google
+            </span>
           </Button>
-          <div className="text-center text-sm animate-fade-in-up delay-6">
-            Already have an account?{" "}
-            <Link
-              href="/signup"
-              className="underline underline-offset-4 hover:text-primary transition-colors duration-200"
-            >
-              Sign in
-            </Link>
-          </div>
-        </CardFooter>
-      </Card>
-    </form>
+        </div>
+      </form>
+
+      <div className="mt-12 pt-8 border-t border-[#c4c5d9] text-center">
+        <p className="text-[16px] text-[#434656]">
+          New to the terminal?{" "}
+          <Link
+            href="/signup"
+            className="text-[#0040e0] font-bold hover:underline uppercase ml-2 tracking-wider"
+          >
+            Sign Up
+          </Link>
+        </p>
+      </div>
+    </div>
   );
 }
