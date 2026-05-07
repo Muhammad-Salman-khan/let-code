@@ -48,6 +48,8 @@
   --devcode-shadow-color: oklch(0.95 0 0 / 0.3);
   --neo-shadow: 4px 4px 0px 0px var(--devcode-shadow-color);
   --neo-shadow-hover: 8px 8px 0px 0px var(--devcode-shadow-color);
+  --devcode-on-secondary-container: oklch(0.9 0.02 105);
+  --devcode-primary-fixed: oklch(0.25 0.15 265);
 }
 
 @theme inline {
@@ -304,6 +306,10 @@
 .neo-shadow-active:hover {
   transform: translate(-2px, -2px);
   box-shadow: var(--neo-shadow-hover);
+}
+
+.neo-shadow-sm {
+  box-shadow: 2px 2px 0px 0px var(--devcode-shadow-color);
 }
 
 /* Font families for DevCode */
