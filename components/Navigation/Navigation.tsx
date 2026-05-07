@@ -11,7 +11,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 // import { MaterialSymbol } from "@/components/ui/material-symbol";
 import { useTheme } from "next-themes";
-import { Code, Settings } from "lucide-react";
+import { Code, Moon, Settings, Sun } from "lucide-react";
 import Userdropdown from "../Dropdown-user/Userdropdown";
 
 export interface NavigationProps {
@@ -82,11 +82,9 @@ export function Navigation({
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           className="p-2 hover:bg-[#f0edec] dark:hover:bg-[#2a2a2a] transition-all duration-200"
         >
-          {/* <MaterialSymbol
-            icon={theme === "dark" ? "light_mode" : "dark_mode"}
-          /> */}
+          <Sun className="dark:hidden" />
+          <Moon className="hidden dark:block" />
         </Button>
-
         {/* Avatar Dropdown */}
         <Userdropdown />
       </div>
