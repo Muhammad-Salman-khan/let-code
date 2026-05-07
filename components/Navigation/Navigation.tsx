@@ -17,7 +17,11 @@ export interface NavigationProps {
     href: string;
     label: string;
   }>;
+  theme?: "light" | "dark";
+  onThemeToggle?: () => void;
+  onNotificationsClick?: () => void;
   onLogout?: () => void;
+  showDropdown?: boolean;
 }
 
 export function Navigation({

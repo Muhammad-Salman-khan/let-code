@@ -10,7 +10,26 @@ import {
 } from "../ui/dropdown-menu";
 import { Code2, LogOutIcon, PersonStandingIcon, Settings } from "lucide-react";
 
-const Userdropdown = () => {
+interface UserdropdownProps {
+  user?: {
+    name: string;
+    avatar?: string;
+    rank?: string;
+    points?: number;
+  };
+  showDropdown?: boolean;
+  onLogout?: () => void;
+}
+
+const Userdropdown = ({
+  user = {
+    name: "DevCode User",
+    rank: "Pro",
+    points: 2450,
+  },
+  showDropdown = false,
+  onLogout,
+}: UserdropdownProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
