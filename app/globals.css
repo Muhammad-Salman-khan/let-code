@@ -22,12 +22,18 @@
   --devcode-on-surface: oklch(0.15 0.005 285);
   --devcode-on-surface-variant: oklch(0.5 0.01 285);
   --devcode-outline: oklch(0.55 0.02 285);
-  --devcode-shadow-color: oklch(0.15 0.01 285);
+   --devcode-shadow-color: oklch(0.15 0.01 285);
 
-  /* Neo-brutalist Shadows */
-  --neo-shadow: 4px 4px 0px 0px var(--devcode-shadow-color);
-  --neo-shadow-hover: 8px 8px 0px 0px var(--devcode-shadow-color);
-}
+   /* Primary fixed shades (from HTML design) */
+   --devcode-primary-fixed: #e5e2e1;
+   --devcode-primary-fixed-dim: #c8c6c5;
+   --devcode-on-primary-fixed: #1c1b1b;
+   --devcode-on-primary-fixed-variant: #474746;
+
+   /* Neo-brutalist Shadows */
+   --neo-shadow: 4px 4px 0px 0px var(--devcode-shadow-color);
+   --neo-shadow-hover: 8px 8px 0px 0px var(--devcode-shadow-color);
+ }
 
 .dark {
   --devcode-primary: oklch(0.65 0.2 265);
@@ -105,13 +111,50 @@
   --color-dc-surface-container-high: var(--devcode-surface-container-high);
   --color-dc-on-surface: var(--devcode-on-surface);
   --color-dc-on-surface-variant: var(--devcode-on-surface-variant);
-  --color-dc-secondary: var(--devcode-secondary);
-  --color-dc-secondary-container: var(--devcode-secondary-container);
-  --color-dc-tertiary: var(--devcode-tertiary);
-  --color-dc-tertiary-container: var(--devcode-tertiary-container);
-}
+   --color-dc-secondary: var(--devcode-secondary);
+   --color-dc-secondary-container: var(--devcode-secondary-container);
+   --color-dc-tertiary: var(--devcode-tertiary);
+   --color-dc-tertiary-container: var(--devcode-tertiary-container);
+   --color-dc-surface-variant: var(--devcode-surface-variant);
+ }
 
-:root {
+ /* Additional DevCode color classes */
+ .bg-primary-fixed-dim { background-color: var(--devcode-primary-fixed-dim); }
+ .bg-secondary-container { background-color: var(--devcode-secondary-container); color: var(--devcode-on-secondary-container); }
+ .bg-tertiary-container { background-color: var(--devcode-tertiary-container); color: var(--devcode-on-tertiary-container); }
+ .bg-surface-container { background-color: var(--devcode-surface-container); }
+ .bg-surface-dim { background-color: var(--devcode-surface-dim); }
+ .bg-surface-container-high { background-color: var(--devcode-surface-container-high); }
+ .bg-surface-container-low { background-color: var(--devcode-surface-container-low); }
+ .bg-surface-container-lowest { background-color: var(--devcode-surface-container-lowest); }
+ .bg-surface-container-highest { background-color: var(--devcode-surface-container-highest); }
+ .bg-surface-bright { background-color: var(--devcode-surface); }
+ .bg-surface-variant { background-color: var(--devcode-surface-variant); border-color: var(--devcode-primary); }
+ .bg-secondary { background-color: var(--devcode-secondary); }
+ .bg-tertiary { background-color: var(--devcode-tertiary); }
+ .text-secondary { color: var(--devcode-secondary); }
+ .text-tertiary { color: var(--devcode-tertiary); }
+ .text-primary { color: var(--devcode-primary); }
+ .text-primary-fixed { color: var(--devcode-primary-fixed); }
+ .text-on-primary-fixed { color: var(--devcode-on-primary-fixed); }
+
+ .text-on-secondary { color: var(--devcode-on-secondary); }
+ .text-on-tertiary { color: var(--devcode-on-tertiary); }
+ .text-on-primary { color: var(--devcode-on-primary); }
+ .text-on-surface { color: var(--devcode-on-surface); }
+ .text-on-surface-variant { color: var(--devcode-on-surface-variant); }
+ .text-on-error-container { color: var(--devcode-on-error-container); }
+ .text-tertiary { color: var(--devcode-tertiary); }
+ .text-secondary { color: var(--devcode-secondary); }
+ .text-primary { color: var(--devcode-primary); }
+
+ .border-primary { border-color: var(--devcode-primary); }
+ .border-surface-variant { border-color: var(--devcode-surface-variant); }
+
+ .bg-primary-container { background-color: var(--devcode-primary-container); color: var(--devcode-on-primary-container); }
+ .bg-primary-fixed { background-color: var(--devcode-primary-fixed); color: var(--devcode-on-primary-fixed); }
+
+ :root {
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
@@ -312,15 +355,20 @@
   box-shadow: 2px 2px 0px 0px var(--devcode-shadow-color);
 }
 
-/* Font families for DevCode */
-.font-space-grotesk {
-  font-family: var(--font-space-grotesk), system-ui, sans-serif;
-}
+ /* Font families for DevCode */
+ .font-space-grotesk {
+   font-family: var(--font-space-grotesk), system-ui, sans-serif;
+ }
 
-.font-heading,
-.font-headline {
-  font-family: var(--font-space-grotesk), system-ui, sans-serif;
-}
+ .font-heading,
+ .font-headline,
+ .font-display {
+   font-family: var(--font-space-grotesk), system-ui, sans-serif;
+ }
+
+ .font-body {
+   font-family: var(--font-geist-sans), system-ui, sans-serif;
+ }
 
 /* Progress bar base */
 .progress-bar-base {

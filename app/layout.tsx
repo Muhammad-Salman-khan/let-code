@@ -40,18 +40,13 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full bg-foreground text-foreground`}
     >
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
       <body suppressHydrationWarning className="min-h-full flex flex-col">
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
           enableSystem={false}
         >
+          <Navigation />
           <TooltipProvider>
             <Toaster position="top-center" theme="light" richColors />
             {children}
