@@ -31,6 +31,15 @@ export const auth = betterAuth({
       prompt: "select_account",
     },
   },
+  user: {
+    additionalFields: {
+      role: {
+        type: "string",
+        required: false,
+        defaultValue: "USER",
+      },
+    },
+  },
   plugins: [
     nextCookies(),
     // polar({

@@ -56,7 +56,7 @@ const Userdropdown = ({
             className="flex items-center gap-3 p-3 font-bold uppercase tracking-widest text-[14px] font-space-grotesk cursor-pointer text-[#434656] dark:text-[#e5e2e1] hover:bg-[#ebe7e7] hover:translate-x-1 transition-all"
           >
             <Link
-              href={`/dashboard/${user?.name}` || "/"}
+              href={`/dashboard/profile/`}
               className="flex items-center gap-3 w-full"
             >
               <PersonStandingIcon />

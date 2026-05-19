@@ -18,12 +18,14 @@ interface ProfileHeaderProps {
       email: string;
       emailVerified: Boolean;
       image: string;
+      role: string;
     };
   };
 }
 
 export function ProfileHeader({ userData, user }: ProfileHeaderProps) {
-  const { name, email, emailVerified, image } = userData?.user;
+  const { name, email, emailVerified, image, role } = userData?.user;
+
   return (
     <header className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
       <div className="md:col-span-4 lg:col-span-3">
@@ -50,9 +52,7 @@ export function ProfileHeader({ userData, user }: ProfileHeaderProps) {
           <h1 className="text-6xl md:text-8xl font-display font-black tracking-tighter uppercase leading-none">
             {name || "Guest profile"}
           </h1>
-          <Badge className="bg-tertiary text-white px-4 py-1 text-xl font-headline font-bold border-2 border-primary neo-shadow">
-            RANK #{user.rank.toLocaleString()}
-          </Badge>
+          <Badge className="bg-tertiary text-white px-4 py-1 text-xl font-headline font-bold border-2 border-primary neo-shadow"></Badge>
         </div>
         <div className="flex gap-8">
           <div>

@@ -13,6 +13,7 @@ export interface NavigationProps {
     avatar?: string;
     rank?: string;
     points?: number;
+    role: string;
   };
   links?: Array<{
     href: string;
@@ -26,17 +27,16 @@ export interface NavigationProps {
 }
 
 export function Navigation({
-  activePath = "/problems",
   user = {
     name: "DevCode User",
     rank: "Pro",
     points: 2450,
+    role: "USER",
   },
   links = [
     { href: "/problems", label: "Problems" },
     { href: "/leaderboard", label: "Leaderboard" },
   ],
-  onLogout,
 }: NavigationProps) {
   const { setTheme, theme } = useTheme();
   const { data: session, isPending } = authClient.useSession();
@@ -57,7 +57,7 @@ export function Navigation({
               key={link.href}
               href={link.href}
               className={`font-medium tracking-tight text-[16px] pb-1 border-b-2 font-space-grotesk ${
-                activePath === link.href ?
+                link.href ?
                   "text-[#0040e0] border-[#0040e0] dark:text-[#b8c3ff] dark:border-[#b8c3ff]"
                 : "text-[#434656] border-transparent dark:text-[#e5e2e1] dark:hover:text-[#fcf9f8] transition-colors"
               }`}
@@ -80,6 +80,11 @@ export function Navigation({
           <Sun className="dark:hidden" />
           <Moon className="hidden dark:block" />
         </Button>
+        {session?.user?.role === "ADMIN" ?
+          <Link href="/create-problem">
+            <Button variant="ghost">Create problem</Button>
+          </Link>
+        : null}
         {isPending ?
           null
         : session?.user.name ?
