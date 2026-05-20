@@ -1,10 +1,11 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import prisma from "../prisma";
-import { polar, checkout, portal } from "@polar-sh/better-auth";
-import { Polar } from "@polar-sh/sdk";
-import polarClient from "../polar";
+// import { polar, checkout, portal } from "@polar-sh/better-auth";
+// import { Polar } from "@polar-sh/sdk";
+// import polarClient from "../polar";
 import { nextCookies } from "better-auth/next-js";
+import { admin } from "better-auth/plugins";
 export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_SECRET,
   database: prismaAdapter(prisma, {
@@ -31,16 +32,8 @@ export const auth = betterAuth({
       prompt: "select_account",
     },
   },
-  user: {
-    additionalFields: {
-      role: {
-        type: "string",
-        required: false,
-        defaultValue: "USER",
-      },
-    },
-  },
   plugins: [
+    admin(),
     nextCookies(),
     // polar({
     //   client: polarClient,

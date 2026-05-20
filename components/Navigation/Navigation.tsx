@@ -8,10 +8,6 @@ import { authClient } from "@/lib/auth/auth-client";
 import { NavigationProps } from "@/lib/Validator/global-types";
 
 export function Navigation({
-  user = {
-    name: "DevCode User",
-    role: "USER",
-  },
   links = [
     { href: "/problems", label: "Problems" },
     { href: "/leaderboard", label: "Leaderboard" },
@@ -59,19 +55,22 @@ export function Navigation({
           <Sun className="dark:hidden" />
           <Moon className="hidden dark:block" />
         </Button>
-        {session?.user?.role === "ADMIN" && (
-          <Link href="/create-problem">
-            <Button variant="ghost">Create problem</Button>
-          </Link>
+        {isPending ? null : (
+          session?.user?.role === "ADMIN" && (
+            <Link href="/create-problem">
+              <Button variant="ghost">Create problem</Button>
+            </Link>
+          )
         )}
-        {isPending ? null : session?.user?.name ? (
-          <Userdropdown user={{ 
-            name: session.user.name,
-            avatar: session.user.image ?? undefined, // Convert null to undefined
-            role: session.user.role ?? "USER", // Fallback if undefined
-          }} />
-        ) : (
-          <div className="flex gap-2">
+        {isPending ?
+          null
+        : session?.user?.name ?
+          <Userdropdown
+            user={{
+              name: session.user.name,
+            }}
+          />
+        : <div className="flex gap-2">
             <Link href="/login">
               <Button variant="ghost">Login</Button>
             </Link>
@@ -79,7 +78,7 @@ export function Navigation({
               <Button variant="ghost">Sign Up</Button>
             </Link>
           </div>
-        )}
+        }
       </div>
     </nav>
   );
