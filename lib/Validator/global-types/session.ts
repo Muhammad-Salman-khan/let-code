@@ -10,7 +10,7 @@ export const zSession = z.object({
   updatedAt: z.date(),
   expiresAt: z.date(),
   token: z.string(),
-  ipAddress: z.string().ip().optional(),
+  ipAddress: z.string().optional(),
   userAgent: z.string().optional(),
 });
 
