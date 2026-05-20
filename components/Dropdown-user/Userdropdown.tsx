@@ -11,11 +11,10 @@ import {
 } from "../ui/dropdown-menu";
 import { Code2, LogOutIcon, PersonStandingIcon, Settings } from "lucide-react";
 import { signOut } from "@/lib/auth/auth-client";
+import { User } from "@/lib/Validator/global-types";
+
 interface UserdropdownProps {
-  user?: {
-    name: string;
-    image?: string;
-  };
+  user?: Pick<User, "name" | "image">; // Use Zod User type
   showDropdown?: boolean;
   onLogout?: () => void;
 }

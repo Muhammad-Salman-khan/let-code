@@ -1,30 +1,18 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-
-interface UserData {
-  name: string;
-  rank: number;
-  totalPoints: number;
-  globalTop: number;
-  avatarUrl?: string;
-}
+import { UserData, User } from "@/lib/Validator/global-types";
 
 interface ProfileHeaderProps {
-  user: UserData;
-  userData: {
-    user: {
-      name: string;
-      email: string;
-      emailVerified: Boolean;
-      image: string;
-      role: string;
+  user: UserData;            // Mock profile data (rank, points, etc.)
+  userData: {                // Auth user data (name, email, image)
+    user: Pick<User, "name" | "email" | "image" | "role"> & {
+      emailVerified: boolean;    // Zod doesn't have 'Boolean' type
     };
   };
 }
 
 export function ProfileHeader({ userData, user }: ProfileHeaderProps) {
-  const { name, email, emailVerified, image, role } = userData;
+  const { name, email, emailVerified, image, role } = userData.user;
 
   return (
     <header className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
@@ -38,11 +26,11 @@ export function ProfileHeader({ userData, user }: ProfileHeaderProps) {
             />
             <AvatarFallback className="text-4xl">
               {name
-                .split(" ")
+                ?.split(" ")
                 .map((n: string) => n[0])
                 .join("")
                 .toUpperCase()
-                .slice(0, 2) || "Guest profile"}
+                .slice(0, 2) || "GP"}
             </AvatarFallback>
           </Avatar>
         </div>
@@ -52,7 +40,9 @@ export function ProfileHeader({ userData, user }: ProfileHeaderProps) {
           <h1 className="text-6xl md:text-8xl font-display font-black tracking-tighter uppercase leading-none">
             {name || "Guest profile"}
           </h1>
-          <Badge className="bg-tertiary text-white px-4 py-1 text-xl font-headline font-bold border-2 border-primary neo-shadow"></Badge>
+          <Badge className="bg-tertiary text-white px-4 py-1 text-xl font-headline font-bold border-2 border-primary neo-shadow">
+            {role}
+          </Badge>
         </div>
         <div className="flex gap-8">
           <div>

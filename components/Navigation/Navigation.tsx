@@ -5,32 +5,11 @@ import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 import Userdropdown from "../Dropdown-user/Userdropdown";
 import { authClient } from "@/lib/auth/auth-client";
-
-export interface NavigationProps {
-  activePath?: string;
-  user?: {
-    name: string;
-    avatar?: string | null; // Allow null
-    rank?: string;
-    points?: number;
-    role?: string; // Make optional
-  };
-  links?: Array<{
-    href: string;
-    label: string;
-  }>;
-  theme?: "light" | "dark";
-  onThemeToggle?: () => void;
-  onNotificationsClick?: () => void;
-  onLogout?: () => void;
-  showDropdown?: boolean;
-}
+import { NavigationProps } from "@/lib/Validator/global-types";
 
 export function Navigation({
   user = {
     name: "DevCode User",
-    rank: "Pro",
-    points: 2450,
     role: "USER",
   },
   links = [

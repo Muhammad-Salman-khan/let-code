@@ -7,37 +7,8 @@ import { Achievements } from "@/components//Achievements/Achievements";
 import { Footer } from "@/components/footer";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-
-interface UserData {
-  name: string;
-  rank: number;
-  totalPoints: number;
-  globalTop: number;
-  avatarUrl?: string;
-  stats: Array<{
-    icon: string;
-    label: string;
-    value: number | string;
-    color: string;
-  }>;
-  proficiency: Array<{
-    language: string;
-    percentage: number;
-    color: string;
-  }>;
-  recentSubmissions: Array<{
-    title: string;
-    difficulty: "EASY" | "MEDIUM" | "HARD";
-    language: string;
-    timeAgo: string;
-    status: string;
-  }>;
-  achievements: Array<{
-    icon: string;
-    label: string;
-    color: string;
-  }>;
-}
+import { UserData } from "@/lib/Validator/global-types";
+import { zUser } from "@/lib/Validator/global-types";
 
 // Mock data - replace with actual data fetching
 const userData: UserData = {
@@ -112,10 +83,10 @@ export default async function ProfilePage() {
     headers: await headers(),
   });
 
-  if (!data?.user) {
+  if (!data?.session) {
     return (
       <div className="min-h-screen bg-background text-primary font-body antialiased flex items-center justify-center">
-        <p className="text-2xl">Loading or not authenticated...</p>
+        <p className="text-2xl">User not found. Please log in.</p>
       </div>
     );
   }
@@ -123,7 +94,13 @@ export default async function ProfilePage() {
   return (
     <div className="min-h-screen bg-background text-primary font-body antialiased">
       <main className="max-w-7xl mx-auto px-6 py-12 space-y-12">
-        <ProfileHeader userData={data?.user} user={userData} />
+        <ProfileHeader
+          userData={{
+            user: { ...data.user, role: data.user.role as "USER" | "ADMIN" },
+          }}
+          user={userData}
+        />
+
         <StatsGrid stats={userData.stats} />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
