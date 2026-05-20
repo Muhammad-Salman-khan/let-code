@@ -32,7 +32,7 @@ const Userdropdown = ({
           className="h-10 w-10 p-0 rounded-full border-2 border-[#0040e0] dark:border-[#747688] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,0.1)] ring-2 ring-[#2e5bff]"
         >
           <Avatar className="h-full w-full">
-            <AvatarImage src={user?.image} alt="vf" />
+            <AvatarImage src={user?.image!!} alt="Avatar Image" />
             <AvatarFallback className="text-4xl">
               {user?.name
                 .split(" ")
