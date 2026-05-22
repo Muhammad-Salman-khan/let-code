@@ -310,10 +310,19 @@
 }
 
 @keyframes fill-progress {
+  /* Existing full width animation */
   from {
     width: 0;
   }
+  to {
+    width: 100%;
+  }
 }
+
+.animate-fill-progress {
+   animation: fill-progress 1.5s ease-out forwards;
+}
+
 
 .animate-slide-up {
   animation: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -323,9 +332,7 @@
   animation: pulse-shadow 2s infinite ease-in-out;
 }
 
-.animate-fill-progress {
-  animation: fill-progress 1.5s ease-out forwards;
-}
+
 
 /* Neo-Brutalist Utility Classes */
 .neo-border {
@@ -405,8 +412,20 @@
   border-left: 0;
 }
 
-/* Leaderboard number styling */
-.leaderboard-rank {
-  font-style: italic;
-  font-family: var(--font-space-grotesk), system-ui, sans-serif;
-}
+  /* Leaderboard number styling */
+  .leaderboard-rank {
+    font-style: italic;
+    font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  }
+
+  /* Loading page styles */
+  .terminal-cursor {
+    animation: cursor-blink 1s step-end infinite;
+  }
+  .system-log-scroll {
+    mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  }
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }

@@ -2,6 +2,7 @@ import { auth } from "@/lib/auth";
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { Footer } from "react-day-picker";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,5 +17,10 @@ export default async function layout({
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  return <div>{children}</div>;
+  return (
+    <div>
+      {children}
+      <Footer />
+    </div>
+  );
 }
