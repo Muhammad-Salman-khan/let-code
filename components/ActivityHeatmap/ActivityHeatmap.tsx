@@ -9,7 +9,7 @@ export function ActivityHeatmap() {
   });
 
   return (
-    <div className="bg-white border-4 border-primary p-6 neo-shadow overflow-x-auto">
+    <div className="bg-surface-container border-4 border-primary p-6 neo-shadow overflow-x-auto">
       <div className="flex gap-2 min-w-[600px]">
         {Array.from({ length: 12 }, (_, colIndex) => (
           <div key={colIndex} className="grid grid-rows-7 gap-1 flex-1">

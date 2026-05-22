@@ -19,10 +19,10 @@ export function RecentSubmissions({ submissions }: RecentSubmissionsProps) {
       {submissions.map((submission, index) => (
         <Card
           key={index}
-          className="bg-white border-4 border-primary p-4 neo-shadow flex justify-between items-center group hover:bg-surface-bright transition-colors"
+          className="bg-surface-container border-4 border-primary p-4 neo-shadow flex justify-between items-center group hover:bg-surface-bright transition-colors"
         >
           <CardContent className="p-0 flex-1">
-            <h3 className="font-headline font-black text-xl uppercase">
+            <h3 className="font-headline font-black text-xl uppercase text-on-surface">
               {submission.title}
             </h3>
             <div className="flex gap-2 mt-1">
