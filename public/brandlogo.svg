@@ -1,0 +1,53 @@
+<svg width="820" height="220" viewBox="0 0 820 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD98A"/>
+      <stop offset="100%" stop-color="#C8861E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Transparent Background -->
+
+  <!-- Icon -->
+  <g transform="translate(40 40)">
+    
+    <!-- Rounded square -->
+    <rect x="0" y="0" width="140" height="140" rx="32"
+          fill="#111827"/>
+
+    <!-- Code symbol -->
+    <path d="M42 48 L18 70 L42 92"
+          fill="none"
+          stroke="url(#gold)"
+          stroke-width="10"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+
+    <path d="M98 48 L122 70 L98 92"
+          fill="none"
+          stroke="url(#gold)"
+          stroke-width="10"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+
+    <!-- Slash -->
+    <path d="M78 38 L62 102"
+          stroke="#FFF4DC"
+          stroke-width="10"
+          stroke-linecap="round"/>
+
+    <!-- Lightning Accent -->
+    <polygon points="72,8 88,36 72,36 92,66 58,44 72,44"
+             fill="#FFD98A"/>
+  </g>
+
+  <!-- Brand Name -->
+  <text x="210" y="128"
+        font-family="Poppins, Montserrat, Arial, sans-serif"
+        font-size="70"
+        font-weight="700"
+        fill="#00ff33">
+    Éclair<tspan fill="url(#gold)">Code</tspan>
+  </text>
+
+</svg>
