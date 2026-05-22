@@ -24,6 +24,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
+  Problem       Problem[]
   role          Role      @default(USER)
   isBlocked     Boolean   @default(false)
 
@@ -102,6 +103,8 @@ model Problem {
   editorial String?
   testCase Json
   codeSnippets Json
+  referenceSolution Json
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
