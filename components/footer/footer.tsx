@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const footerLinks = [
   { label: "Help Center", href: "#" },
@@ -26,7 +27,7 @@ export function Footer() {
         {/* Brand */}
         <div className="flex flex-col gap-4">
           <span className="font-space-grotesk font-bold text-[var(--devcode-on-surface)] text-2xl">
-            DevCode
+            <Image src="/brandlogo.svg" alt="ÉclairCode" width={120} height={30} className="h-8 md:h-10 lg:h-12 w-auto"/>
           </span>
           <p className="font-space-grotesk text-[var(--devcode-on-surface-variant)] max-w-xs">
             Building the future of developer tools with mathematical precision
@@ -68,7 +69,7 @@ export function Footer() {
 
         {/* Social & Copyright */}
         <div className="text-[var(--devcode-on-surface-variant)] font-space-grotesk text-sm flex flex-col items-end gap-2">
-          <span>© 2026 DevCode. Form Follows Function.</span>
+          <span>© 2026 <Image src="/brandlogo.svg" alt="ÉclairCode" width={120} height={30} className="h-8 md:h-10 lg:h-12 w-auto"/>. Form Follows Function.</span>
         </div>
       </div>
     </footer>

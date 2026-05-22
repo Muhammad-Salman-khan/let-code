@@ -54,9 +54,7 @@ export default function LoginForm() {
         <div className="w-12 h-12 bg-[#0040e0] border-2 border-[#1c1b1b] flex items-center justify-center">
           <span className="material-symbols-outlined text-white">terminal</span>
         </div>
-        <span className="text-[32px] font-bold text-[#0040e0] tracking-tighter">
-          DevCode
-        </span>
+        <Image src="/brandlogo.svg" alt="ÉclairCode" width={120} height={32} className="h-12 md:h-14 lg:h-16 w-auto"/>
       </div>
 
       <div className="mb-10">
@@ -64,7 +62,7 @@ export default function LoginForm() {
           System Authentication
         </h2>
         <p className="text-[16px] text-[#434656]">
-          Enter your credentials to access the DevCode terminal.
+          Enter your credentials to access the <Image src="/brandlogo.svg" alt="ÉclairCode" width={40} height={40} className="inline h-8 w-auto align-middle"/> terminal.
         </p>
       </div>
 

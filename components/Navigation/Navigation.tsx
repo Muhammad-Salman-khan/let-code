@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 import { Moon, Sun } from "lucide-react";
 import Userdropdown from "../Dropdown-user/Userdropdown";
 import { authClient } from "@/lib/auth/auth-client";
@@ -23,7 +24,7 @@ export function Navigation({
           href="/"
           className="text-[32px] font-bold tracking-tighter text-[#1c1b1b] dark:text-[#fcf9f8] font-space-grotesk"
         >
-          DevCode
+          <Image src="/brandlogo.svg" alt="ÉclairCode" width={160} height={40} className="h-12 md:h-14 lg:h-16 w-auto"/>
         </Link>
 
         <div className="hidden md:flex gap-8 items-center">

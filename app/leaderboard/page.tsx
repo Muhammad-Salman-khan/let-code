@@ -19,7 +19,7 @@ export default function LeaderboardPage() {
                 <p className="text-lg font-bold uppercase tracking-wide max-w-xl border-l-8 border-secondary p-4 bg-surface-container">
                   The definitive ranking of technical excellence. Ascend the
                   grid, deploy the truth, and claim your place among the elite
-                  architects of DevCode.
+                  architects of ÉclairCode.
                 </p>
               </div>
               <div className="bg-secondary-container p-6 neo-border-thick neo-shadow w-full md:w-auto">

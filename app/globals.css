@@ -4,9 +4,9 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* DevCode Neo-Brutalist Design System */
+/* ÉclairCode Neo-Brutalist Design System */
 :root {
-  /* DevCode Brand Colors */
+  /* ÉclairCode Brand Colors */
   --devcode-primary: oklch(0.488 0.243 264.376);
   --devcode-primary-container: oklch(0.88 0.19 264.5);
   --devcode-on-primary-container: oklch(0.15 0.06 264);
@@ -102,7 +102,7 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* DevCode color utilities */
+  /* ÉclairCode color utilities */
   --color-dc-primary: var(--devcode-primary);
   --color-dc-primary-container: var(--devcode-primary-container);
   --color-dc-surface: var(--devcode-surface);
@@ -118,7 +118,7 @@
    --color-dc-surface-variant: var(--devcode-surface-variant);
  }
 
- /* Additional DevCode color classes */
+ /* Additional ÉclairCode color classes */
  .bg-primary-fixed-dim { background-color: var(--devcode-primary-fixed-dim); }
  .bg-secondary-container { background-color: var(--devcode-secondary-container); color: var(--devcode-on-secondary-container); }
  .bg-tertiary-container { background-color: var(--devcode-tertiary-container); color: var(--devcode-on-tertiary-container); }
@@ -285,7 +285,7 @@
   vertical-align: middle;
 }
 
-/* DevCode Neo-Brutalist Animations */
+/* ÉclairCode Neo-Brutalist Animations */
 @keyframes slide-up {
   from {
     opacity: 0;
@@ -384,7 +384,7 @@
   box-shadow: 4px 4px 0px 0px var(--devcode-tertiary);
 }
 
- /* Font families for DevCode */
+ /* Font families for ÉclairCode */
  .font-space-grotesk {
    font-family: var(--font-space-grotesk), system-ui, sans-serif;
  }

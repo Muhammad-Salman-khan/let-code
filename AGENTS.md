@@ -24,7 +24,7 @@ These are non-negotiable. Every deviation is a mistake. No exceptions.
 - Do NOT install or use Radix UI primitives directly. shadcn wraps them. Use shadcn.
 - Do NOT use MUI, Chakra, Mantine, Headless UI, or any other component library alongside shadcn.
 - Custom components only permitted when shadcn has nothing that fits. Document why when that happens.
-- Always import from `@/components/ui/...`. Style is `radix-nova`. Custom theme lives in `app/globals.css` (DevCode neo-brutalist design system).
+- Always import from `@/components/ui/...`. Style is `radix-nova`. Custom theme lives in `app/globals.css` (ÉclairCode neo-brutalist design system).
 
 **Separation of concerns**
 - Components are responsible for **one thing**: turning data into markup.

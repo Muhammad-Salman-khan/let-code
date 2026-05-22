@@ -349,7 +349,7 @@ Always import base components from `@/components/ui/<component-name>`.
 
 ## 10. DESIGN SYSTEM: BAUHAUS NEO-BRUTALIST
 
-The project uses the **DevCode neo-brutalist** aesthetic. Reference: `designs/bauhaus_neo_brutalist/DESIGN.md`.
+The project uses the **ÉclairCode neo-brutalist** aesthetic. Reference: `designs/bauhaus_neo_brutalist/DESIGN.md`.
 
 ### Core Principles
 - **Form follows function**: bold, raw, high contrast, strong geometry.
