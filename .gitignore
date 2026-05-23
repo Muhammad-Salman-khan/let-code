@@ -43,3 +43,7 @@ next-env.d.ts
 designs
 .opencode
 .vscode
+
+
+
+prisma/lib/generated/prisma
