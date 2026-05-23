@@ -24,7 +24,13 @@ export function Navigation({
           href="/"
           className="text-[32px] font-bold tracking-tighter text-[#1c1b1b] dark:text-[#fcf9f8] font-space-grotesk"
         >
-          <Image src="/brandlogo.svg" alt="ÉclairCode" width={160} height={40} className="h-12 md:h-14 lg:h-16 w-auto"/>
+          <Image
+            src="/brandlogo.svg"
+            alt="ÉclairCode"
+            width={160}
+            height={40}
+            className="h-12 md:h-14 lg:h-16 w-auto"
+          />
         </Link>
 
         <div className="hidden md:flex gap-8 items-center">
@@ -57,7 +63,7 @@ export function Navigation({
           <Moon className="hidden dark:block" />
         </Button>
         {isPending ? null : (
-          session?.user?.role === "ADMIN" && (
+          session?.user?.role === "admin" && (
             <Link href="/create-problem">
               <Button variant="ghost">Create problem</Button>
             </Link>

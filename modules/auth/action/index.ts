@@ -9,6 +9,7 @@ import {
   signupSchema,
 } from "@/lib/Validator/Form-validators";
 import { headers } from "next/headers";
+import { Role } from "./../../../prisma/lib/generated/prisma/enums";
 
 export const signUpwithEmail = async (formdata: SignupInput) => {
   const parsedData = signupSchema.safeParse(formdata);
