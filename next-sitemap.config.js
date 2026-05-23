@@ -1,7 +1,7 @@
 /**
  * @type {import('next-sitemap').IConfig}
  */
-module.exports = {
+export default {
   siteUrl: "https://eclaircode.vercel.app",
   generateRobotsTxt: true,
   sitemapSize: 5000,
