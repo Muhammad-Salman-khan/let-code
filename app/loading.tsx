@@ -1,4 +1,5 @@
 import { Footer } from "@/components/footer";
+import Image from "next/image";
 
 export default function Loading() {
   return (
@@ -8,15 +9,11 @@ export default function Loading() {
         {/* Bauhaus Loading Indicator */}
         <div className="relative w-48 h-48 mb-12">
           <div className="absolute inset-0 border-8 border-on-background rounded-full"></div>
-          <div
-            className="absolute inset-2 border-4 border-primary rounded-full border-t-transparent animate-spin"
-            style={{ animationDuration: "2000ms" }}
-          ></div>
+
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-12 h-12 bg-on-background flex items-center justify-center">
-              <span className="text-background text-3xl font-black terminal-cursor">
-                _
-              </span>
+            <div className="w-auto h-80 p-4 bg-on-background flex items-center justify-center">
+              <Image src="/brandlogo.svg" width={600} height={100} alt="logo" />
+              <span className="text-background text-3xl font-black terminal-cursor"></span>
             </div>
           </div>
           {/* Decorative Squares */}
