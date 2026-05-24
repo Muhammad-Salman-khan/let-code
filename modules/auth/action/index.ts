@@ -9,24 +9,28 @@ import {
   signupSchema,
 } from "@/lib/Validator/Form-validators";
 import { headers } from "next/headers";
-import { Role } from "./../../../prisma/lib/generated/prisma/enums";
-
 export const signUpwithEmail = async (formdata: SignupInput) => {
   const parsedData = signupSchema.safeParse(formdata);
   if (!parsedData.success) {
-    return {
-      success: false,
-      message: parsedData.error?.flatten().fieldErrors,
-    };
+    return returnResponse(
+      404,
+      false,
+      "Fill all the field correctly",
+      "Fill all the field correctly",
+      null,
+    );
   }
   const { username, email, password }: SignupInput = parsedData.data;
   const userExists = await checkUserExists(email);
 
   if (userExists) {
-    return {
-      success: false,
-      message: "User already exists",
-    };
+    return returnResponse(
+      400,
+      false,
+      "Fill all the fields correctly",
+      null,
+      null,
+    );
   }
   try {
     const data = await auth.api.signUpEmail({
@@ -38,30 +42,41 @@ export const signUpwithEmail = async (formdata: SignupInput) => {
     });
     if (!data) {
       return returnResponse(
+        500,
         false,
         "Something went wrong",
         "Something went wrong",
+        null,
       );
     }
-    return returnResponse(true, "User Created Successfully");
+    return returnResponse(201, true, "User Created Successfully", null, data);
   } catch (error) {
-    console.error(error?.toString());
-    return returnResponse(false, `something went wrong`, error?.toString());
+    const cleanError = error?.toString();
+    return returnResponse(
+      500,
+      false,
+      "Internal server error",
+      cleanError,
+      null,
+    );
   }
 };
 
 export const LoginWithEmail = async (formData: LoginInput) => {
   const parsedData = loginSchema.safeParse(formData);
   if (!parsedData.success) {
-    return {
-      success: false,
-      message: parsedData.error?.flatten().fieldErrors,
-    };
+    return returnResponse(
+      404,
+      false,
+      "Fill all the field correctly",
+      parsedData.error?.flatten().fieldErrors.toString(),
+      null,
+    );
   }
   const { email, password } = parsedData.data;
   const exists = await checkUserExists(email);
   if (!exists) {
-    return returnResponse(false, "User does not exist");
+    return returnResponse(404, false, "User not Found", null, null);
   }
   try {
     const data = await auth.api.signInEmail({
@@ -74,12 +89,11 @@ export const LoginWithEmail = async (formData: LoginInput) => {
     });
 
     if (!data) {
-      return returnResponse(false, "Failed to login");
+      return returnResponse(505, false, "Something went wrong", data, null);
     }
-
-    return returnResponse(true, "Logged in successfully");
+    return returnResponse(200, true, "Logged in successfully", null, null);
   } catch (error: any) {
-    console.error(error);
-    return returnResponse(false, error.toString());
+    const cleanError = error.toString();
+    return returnResponse(401, false, "Invalid email or password", null, null);
   }
 };

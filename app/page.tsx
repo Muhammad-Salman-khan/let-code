@@ -47,28 +47,25 @@ const leaderboardUsers = [
     name: "dev_ninja",
     points: 2450,
     color: "var(--devcode-tertiary)",
-    avatar:
-      "/brandlogo.svg",
+    avatar: "/brandlogo.svg",
   },
   {
     rank: 2,
     name: "algo_queen",
     points: 2120,
     color: "var(--devcode-secondary)",
-    avatar:
-      "/brandlogo.svg",
+    avatar: "/brandlogo.svg",
   },
   {
     rank: 3,
     name: "stack_overflow",
     points: 1980,
     color: "var(--devcode-on-surface)",
-    avatar:
-      "/brandlogo.svg",
+    avatar: "/brandlogo.svg",
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
   return (
     <>
       <main className="min-h-screen bg-[var(--devcode-surface)] text-[var(--devcode-on-surface)]">

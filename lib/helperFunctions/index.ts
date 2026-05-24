@@ -10,22 +10,24 @@ export const checkUserExists = async (email: string) => {
   return !!userExists;
 };
 export const checkUserForData = async (email: string) => {
-  const userExists = await prisma.user.findUnique({
+  const userData = await prisma.user.findUnique({
     where: { email: email },
   });
-  if (!userExists) {
-    return returnResponse(false, "User does not exists");
+  if (!userData) {
+    return returnResponse(401, false, "User does not exists", null, null);
   }
-  return returnResponse(true, "User exists", "", userExists);
+  return returnResponse(200, true, "User exists", null, userData);
 };
 
 export const returnResponse = (
-  success: boolean,
-  message: string,
-  error?: string,
-  data?: object,
+  status: Number,
+  success: Boolean,
+  message: String | null,
+  error?: String | null,
+  data?: Object | null,
 ) => {
   return {
+    status,
     success,
     message,
     data,
